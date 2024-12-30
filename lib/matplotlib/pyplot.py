@@ -93,6 +93,7 @@ if TYPE_CHECKING:
     from typing_extensions import ParamSpec
 
     import PIL.Image
+
     from numpy.typing import ArrayLike
 
     import matplotlib.axes

@@ -13,7 +13,6 @@ import tkinter.messagebox
 from tkinter.simpledialog import SimpleDialog
 
 import numpy as np
-from PIL import Image, ImageTk
 
 import matplotlib as mpl
 from matplotlib import _api, backend_tools, cbook, _c_internal_utils
@@ -500,6 +499,8 @@ class FigureManagerTk(FigureManagerBase):
     @classmethod
     def create_with_canvas(cls, canvas_class, figure, num):
         # docstring inherited
+        from PIL import ImageTk
+
         with _restore_foreground_window_at_end():
             if cbook._get_running_interactive_framework() is None:
                 cbook._setup_new_guiapp()
@@ -751,6 +752,8 @@ class NavigationToolbar2Tk(NavigationToolbar2, tk.Frame):
 
         The pixel size is determined by the DPI scaling of the window.
         """
+        from PIL import Image, ImageTk
+
         if button._image_file is None:
             return
 

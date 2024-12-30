@@ -23,7 +23,6 @@ import warnings
 import zlib
 
 import numpy as np
-from PIL import Image
 
 import matplotlib as mpl
 from matplotlib import _api, _text_helpers, _type1font, cbook, dviread
@@ -1729,6 +1728,8 @@ end"""
         (alpha channel) *smask*, which should be either None or a ``(height,
         width, 1)`` array.
         """
+        from PIL import Image
+
         height, width, color_channels = data.shape
         obj = {'Type': Name('XObject'),
                'Subtype': Name('Image'),

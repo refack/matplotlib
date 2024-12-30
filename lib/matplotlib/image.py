@@ -10,8 +10,6 @@ from pathlib import Path
 import warnings
 
 import numpy as np
-import PIL.Image
-import PIL.PngImagePlugin
 
 import matplotlib as mpl
 from matplotlib import _api, cbook
@@ -623,6 +621,8 @@ class _ImageBase(mcolorizer.ColorizingArtist):
 
     def write_png(self, fname):
         """Write the image to png file *fname*."""
+        import PIL.Image
+
         im = self.to_rgba(self._A[::-1] if self.origin == 'lower' else self._A,
                           bytes=True, norm=True)
         PIL.Image.fromarray(im).save(fname, format="png")
@@ -670,6 +670,8 @@ class _ImageBase(mcolorizer.ColorizingArtist):
         ----------
         A : array-like or `PIL.Image.Image`
         """
+        import PIL.Image
+
         if isinstance(A, PIL.Image.Image):
             A = pil_to_array(A)  # Needed e.g. to apply png palette.
         self._A = self._normalize_image_array(A)
@@ -1467,6 +1469,8 @@ def imread(fname, format=None):
     """
     # hide imports to speed initial import on systems with slow linkers
     from urllib import parse
+    import PIL.Image
+    import PIL.PngImagePlugin
 
     if format is None:
         if isinstance(fname, str):
@@ -1557,6 +1561,9 @@ def imsave(fname, arr, vmin=None, vmax=None, cmap=None, format=None,
         default 'Software' key.
     """
     from matplotlib.figure import Figure
+    import PIL.Image
+    import PIL.PngImagePlugin
+
     if isinstance(fname, os.PathLike):
         fname = os.fspath(fname)
     if format is None:

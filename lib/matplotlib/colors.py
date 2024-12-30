@@ -49,9 +49,6 @@ import itertools
 from numbers import Real
 import re
 
-from PIL import Image
-from PIL.PngImagePlugin import PngInfo
-
 import matplotlib as mpl
 import numpy as np
 from matplotlib import _api, _cm, cbook, scale, _image
@@ -943,6 +940,9 @@ class Colormap:
         raise NotImplementedError()
 
     def _repr_png_(self):
+        from PIL import Image
+        from PIL.PngImagePlugin import PngInfo
+
         """Generate a PNG representation of the Colormap."""
         X = np.tile(np.linspace(0, 1, _REPR_PNG_SIZE[0]),
                     (_REPR_PNG_SIZE[1], 1))
@@ -1505,6 +1505,9 @@ class MultivarColormap:
 
     def _repr_png_(self):
         """Generate a PNG representation of the Colormap."""
+        from PIL import Image
+        from PIL.PngImagePlugin import PngInfo
+
         X = np.tile(np.linspace(0, 1, _REPR_PNG_SIZE[0]),
                                 (_REPR_PNG_SIZE[1], 1))
         pixels = np.zeros((_REPR_PNG_SIZE[1]*len(self), _REPR_PNG_SIZE[0], 4),
@@ -1969,6 +1972,9 @@ class BivarColormap:
 
     def _repr_png_(self):
         """Generate a PNG representation of the BivarColormap."""
+        from PIL import Image
+        from PIL.PngImagePlugin import PngInfo
+
         if not self._isinit:
             self._init()
         pixels = self.lut

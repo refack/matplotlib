@@ -11,8 +11,6 @@ import subprocess
 from tempfile import TemporaryDirectory
 import weakref
 
-from PIL import Image
-
 import matplotlib as mpl
 from matplotlib import cbook, font_manager as fm
 from matplotlib.backend_bases import (
@@ -630,6 +628,7 @@ class RendererPgf(RendererBase):
 
     def draw_image(self, gc, x, y, im, transform=None):
         # docstring inherited
+        from PIL import Image
 
         h, w = im.shape[:2]
         if w == 0 or h == 0:

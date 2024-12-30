@@ -17,7 +17,6 @@ import os
 from pathlib import Path
 
 import numpy as np
-from PIL import Image
 
 from matplotlib import _api, backend_bases, backend_tools
 from matplotlib.backends import backend_agg
@@ -225,6 +224,8 @@ class FigureCanvasWebAggCore(backend_agg.FigureCanvasAgg):
             self.handle_send_image_mode(None)
 
     def get_diff_image(self):
+        from PIL import Image
+
         if self._png_is_old:
             renderer = self.get_renderer()
 

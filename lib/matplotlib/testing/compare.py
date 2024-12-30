@@ -16,7 +16,6 @@ import weakref
 import re
 
 import numpy as np
-from PIL import Image
 
 import matplotlib as mpl
 from matplotlib import cbook
@@ -383,6 +382,8 @@ def calculate_rms(expected_image, actual_image):
 
 
 def _load_image(path):
+    from PIL import Image
+
     img = Image.open(path)
     # In an RGBA image, if the smallest value in the alpha channel is 255, all
     # values in it must be 255, meaning that the image is opaque. If so,

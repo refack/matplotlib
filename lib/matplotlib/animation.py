@@ -13,7 +13,6 @@ import uuid
 import warnings
 
 import numpy as np
-from PIL import Image
 
 import matplotlib as mpl
 from matplotlib._animation_data import (
@@ -488,6 +487,8 @@ class PillowWriter(AbstractMovieWriter):
         self._frames = []
 
     def grab_frame(self, **savefig_kwargs):
+        from PIL import Image
+
         _validate_grabframe_kwargs(savefig_kwargs)
         buf = BytesIO()
         self.fig.savefig(

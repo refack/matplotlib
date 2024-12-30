@@ -11,7 +11,6 @@ import re
 import uuid
 
 import numpy as np
-from PIL import Image
 
 import matplotlib as mpl
 from matplotlib import cbook, font_manager as fm
@@ -937,6 +936,7 @@ class RendererSVG(RendererBase):
 
     def draw_image(self, gc, x, y, im, transform=None):
         # docstring inherited
+        from PIL import Image
 
         h, w = im.shape[:2]
 

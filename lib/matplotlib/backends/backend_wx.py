@@ -15,7 +15,6 @@ import sys
 import weakref
 
 import numpy as np
-import PIL.Image
 
 import matplotlib as mpl
 from matplotlib.backend_bases import (
@@ -1090,6 +1089,8 @@ class NavigationToolbar2Wx(NavigationToolbar2, wx.ToolBar):
         *name*, including the extension and relative to Matplotlib's "images"
         data directory.
         """
+        from PIL import Image
+
         try:
             dark = wx.SystemSettings.GetAppearance().IsDark()
         except AttributeError:  # wxpython < 4.1
@@ -1109,7 +1110,7 @@ class NavigationToolbar2Wx(NavigationToolbar2, wx.ToolBar):
             toolbarIconSize = wx.ArtProvider().GetDIPSizeHint(wx.ART_TOOLBAR)
             return wx.BitmapBundle.FromSVG(svg, toolbarIconSize)
         else:
-            pilimg = PIL.Image.open(path)
+            pilimg = Image.open(path)
             # ensure RGBA as wx BitMap expects RGBA format
             image = np.array(pilimg.convert("RGBA"))
             if dark:
